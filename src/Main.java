@@ -1,20 +1,18 @@
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 
 public class Main {
     public static void main(String[] args) {
 
-        List<Integer> intList = Arrays.asList(1, 2, 5, 16, -1, -2, 0, 32, 3, 5, 8, 23, 4);
-        intList.stream()
-                .filter(x -> x > 0)
-                .filter(x -> x % 2 == 0)
-                .sorted(Comparator.naturalOrder())
-                .forEach(System.out::println);
-
-
-//                .collect(Collectors.toList());
-//        System.out.println(collect);
+        List<Integer> intList = new ArrayList<Integer>(Arrays.asList(1, 2, 5, 16, -1, -2, 0, 32, 3, 5, 8, 23, 4));
+        Iterator iterator = intList.iterator();
+        while (iterator.hasNext()) {
+            int next = (int) iterator.next();
+            if (next <= 0 || (next % 2) != 0) {
+                iterator.remove();
+            }
+        }
+        Collections.sort(intList);
+        System.out.println(intList);
     }
 }
